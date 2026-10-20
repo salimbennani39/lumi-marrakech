@@ -380,7 +380,7 @@
   <button class="horloge__menu" type="button" aria-expanded="false" aria-controls="hoursPanel" aria-label="Les heures de la journée">
     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 5.5V10l3 2" stroke-linecap="round"/></svg>
   </button>
-  <a class="btn call" href="tel:+34647591229">Réserver</a>
+  <a class="btn call" href="https://salimbennani39.github.io/showcase/404.html">Réserver</a>
   <div class="horloge__panel" id="hoursPanel">
     <p class="panel-label">Aller à</p>
     <ul class="index">
@@ -409,7 +409,7 @@
         <h1 class="sc-display">Du matin jusqu'au dernier <em>tajine</em>.</h1>
         <p>Café, brunch et cuisine marocaine et méditerranéenne, au cœur de Gueliz.</p>
         <div class="hero__ctas">
-          <a class="btn" href="tel:+34647591229">
+          <a class="btn" href="https://salimbennani39.github.io/showcase/404.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke-linejoin="round"/></svg>
             Réserver
           </a>
@@ -594,14 +594,14 @@
       </div>
       <div class="card" data-sc-in data-sc-stagger="60">
         <div class="card__call">
-          <a class="btn" href="tel:+34647591229">
+          <a class="btn" href="https://salimbennani39.github.io/showcase/404.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke-linejoin="round"/></svg>
             Réserver · +34 647 591 229
           </a>
           <small>Réservation par téléphone, tous les jours de 8h à 23h</small>
         </div>
         <ul class="links">
-          <li><a href="https://wa.me/34647591229" target="_blank" rel="noopener">
+          <li><a href="https://salimbennani39.github.io/showcase/404.html" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z" stroke-linejoin="round"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z" stroke-linejoin="round"/></svg>
             <span><span class="l-title">WhatsApp</span><span class="l-sub">Écrivez-nous</span></span><span class="arrow" aria-hidden="true">→</span></a></li>
           <li><a href="#" target="_blank" rel="noopener">
@@ -736,10 +736,12 @@
   }
 })();
 </script>
-<script>/* showcase: links that lead nowhere open the Showcase 404 */
+<script>/* showcase: links that lead nowhere, and booking / WhatsApp / call links, open the Showcase 404 */
 (()=>{const U='https://salimbennani39.github.io/showcase/404.html';
-const dead=a=>{const h=(a.getAttribute('href')||'').trim();return h===''||h==='#'||h==='#!'||/^javascript:/i.test(h)};
-addEventListener('click',e=>{if(e.defaultPrevented)return;const a=e.target.closest&&e.target.closest('a');
-if(a&&dead(a)){e.preventDefault();location.href=U;}});})();</script>
+const dead=a=>{const h=(a.getAttribute('href')||'').trim();return h===''||h==='#'||h==='#!'||/^javascript:/i.test(h)||/^(tel:|sms:|mailto:|https?:\/\/(api\.|web\.)?(wa\.me|whatsapp\.com))/i.test(h)};
+addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a');if(!a)return;
+const h=(a.getAttribute('href')||'').trim();const contact=/^(tel:|sms:|mailto:|https?:)/i.test(h);
+if(dead(a)&&(contact||!e.defaultPrevented)){e.preventDefault();e.stopImmediatePropagation();location.href=U;}},true);
+const o=window.open;window.open=function(u){if(/(wa\.me|whatsapp\.com|^tel:)/i.test(String(u||'')))return location.href=U,null;return o.apply(this,arguments)};})();</script>
 </body>
 </html>
